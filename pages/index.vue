@@ -2,7 +2,7 @@
 .wrapper(ref='wrapper')
   #map.map
   img.button(src='@/assets/img/share.png', alt='alt', @click='activeModal')
-  CoModal
+  CoModal(:data='data')
 </template>
 
 <script lang="ts">
@@ -22,6 +22,7 @@ export default class Index extends Vue {
 
   map!: mapboxgl.Map
   accessToken: string = ''
+  data = {}
 
   mounted() {
     this.map = new mapboxgl.Map({
@@ -51,47 +52,57 @@ export default class Index extends Vue {
 
     this.map.addControl(new mapboxgl.NavigationControl(), 'bottom-left')
 
+    const pngName = ['me', 'kurumaisu', 'kodomo', 'mimi']
+
     this.map.on('load', () => {
-      this.map.loadImage(
-        'https://docs.mapbox.com/mapbox-gl-js/assets/cat.png',
-        (error, image) => {
+      pngName.forEach((name) => {
+        this.map.loadImage(`/pin/${name}.png`, (error, image) => {
           if (error) throw error
-          this.map.addImage('cat', image!)
-          this.map.addSource('point', {
+          this.map.addImage(name, image!)
+          this.map.addSource(name, {
             type: 'geojson',
             data: {
               type: 'FeatureCollection',
               features: [
                 {
                   type: 'Feature',
-                  geometry: {
-                    type: 'Point',
-                    coordinates: [-77.4144, 25.0759],
+                  properties: {
+                    name: 'はびえる',
+                    time: '2022/09/17',
+                    text: 'ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章',
+                    tag: ['#色覚障害', '#2型3色覚'],
                   },
-                } as any,
-                {
-                  type: 'Feature',
                   geometry: {
                     type: 'Point',
-                    coordinates: [77.4144, 25.0759],
+                    coordinates: [
+                      Math.random() * 360 - 180,
+                      Math.random() * 180 - 90,
+                    ],
                   },
                 },
               ],
             },
           })
 
-          // Add a layer to use the image to represent the data.
           this.map.addLayer({
-            id: 'points',
+            id: name,
             type: 'symbol',
-            source: 'point',
+            source: name,
             layout: {
-              'icon-image': 'cat',
-              'icon-size': 0.25,
+              'icon-image': name,
+              'icon-size': 0.5,
             },
           })
-        },
-      )
+
+          this.map.on('click', name, (e) => {
+            const description = (e.features![0] as any).properties
+            if (description !== undefined) {
+              this.data = description
+              this.activeModal()
+            }
+          })
+        })
+      })
     })
   }
 

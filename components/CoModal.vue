@@ -6,13 +6,12 @@
       header.header
         img.img(src='@/assets/img/icon.png', alt='alt')
         .header-name
-          .name はびえる
-          time.time 2022/09/17
-      .text ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章
+          .name {{ data.name }}
+          time.time {{ data.time }}
+      .text {{ data.text }}
       img.img2(src='@/assets/img/img.png', alt='alt')
       .tags
-        .tag #色覚障害
-        .tag #2型3色覚
+        .tag(v-for='t of data.tag?.split(",")', :key='t') {{ t }}
       .exp
         .exp-title 色覚障害とは？
         .exp-exp ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章
@@ -20,10 +19,13 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Prop, Vue } from 'nuxt-property-decorator'
 
 @Component({})
 export default class CoModal extends Vue {
+  @Prop({ type: Object })
+  data: Object | undefined
+
   hiddenModal() {
     document.body.removeAttribute('data-is-active')
   }
@@ -39,6 +41,7 @@ export default class CoModal extends Vue {
   left: 0;
   background-color: rgba($color: #000000, $alpha: 0.5);
   display: none;
+  z-index: 999;
 }
 .modal {
   position: relative;
