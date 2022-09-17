@@ -15,6 +15,11 @@
       .exp
         .exp-title 色覚障害とは？
         .exp-exp ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章
+    img.ar(
+      src='@/assets/img/ar.png',
+      alt='alt',
+      @click='openUrl("https://arfilter.vercel.app/#1")'
+    )
   //- button.close(@click='hiddenModal') close
 </template>
 
@@ -25,6 +30,10 @@ import { Component, Prop, Vue } from 'nuxt-property-decorator'
 export default class CoModal extends Vue {
   @Prop({ type: Object })
   data: Object | undefined
+
+  openUrl(url: string) {
+    window.open(url, '_blank')
+  }
 
   hiddenModal() {
     document.body.removeAttribute('data-is-active')
@@ -154,5 +163,14 @@ body[data-is-active] {
     color: #838383;
     font-size: p2w(10);
   }
+}
+
+.ar {
+  position: absolute;
+  bottom: p2w(-100);
+  right: p2w(20);
+  width: p2w(150);
+  height: p2w(150);
+  border-radius: 50%;
 }
 </style>

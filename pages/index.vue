@@ -1,7 +1,11 @@
 <template lang="pug">
 .wrapper(ref='wrapper')
   #map.map
-  img.button(src='@/assets/img/share.png', alt='alt', @click='activeModal')
+  img.button(
+    src='@/assets/img/share.png',
+    alt='alt',
+    @click='openUrl("https://comap-front.vercel.app/")'
+  )
   CoModal(:data='data')
 </template>
 
@@ -104,6 +108,10 @@ export default class Index extends Vue {
         })
       })
     })
+  }
+
+  openUrl(url: string) {
+    window.open(url, '_blank')
   }
 
   activeModal() {
