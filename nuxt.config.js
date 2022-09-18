@@ -37,6 +37,8 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    // https://go.nuxtjs.dev/vuetify
+    '@nuxtjs/vuetify',
     '@nuxtjs/style-resources',
   ],
 
@@ -67,5 +69,7 @@ export default {
 
   privateRuntimeConfig: {
     accessToken: process.env.ACCESS_TOKEN,
+    basicAuth: process.env.BASIC_AUTH,
+    appUrl: process.env.APP_URL,
   },
 }

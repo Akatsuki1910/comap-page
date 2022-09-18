@@ -1,11 +1,7 @@
 <template lang="pug">
 .wrapper(ref='wrapper')
   #map.map
-  img.button(
-    src='@/assets/img/share.png',
-    alt='alt',
-    @click='openUrl("https://comap-front.vercel.app/")'
-  )
+  Modal(:basicAuth='basicAuth', :appUrl='appUrl')
   CoModal(:data='data')
 </template>
 
@@ -18,7 +14,9 @@ import 'mapbox-gl/dist/mapbox-gl.css'
 @Component({
   asyncData({ $config }) {
     const accessToken = $config.accessToken
-    return { accessToken }
+    const basicAuth = $config.basicAuth
+    const appUrl = $config.appUrl
+    return { accessToken, basicAuth, appUrl }
   },
 })
 export default class Index extends Vue {
@@ -132,14 +130,5 @@ export default class Index extends Vue {
   left: 0;
   width: 100%;
   height: 100vh;
-}
-
-.button {
-  position: absolute;
-  bottom: p2w(80);
-  right: p2w(20);
-  width: p2w(200);
-  height: p2w(200);
-  border-radius: 50%;
 }
 </style>

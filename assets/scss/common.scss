@@ -1,7 +1,6 @@
-@use 'sass:math';
 $sp-max-width: 750;
 @function p2w($px, $desingWidth: $sp-max-width) {
-  @return math.div($px * 100, $desingWidth) + vw;
+  @return ($px * 100 / $desingWidth) + vw;
 }
 
 *,

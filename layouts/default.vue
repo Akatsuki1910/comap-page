@@ -1,5 +1,6 @@
 <template lang="pug">
-Nuxt
+v-app
+  Nuxt
 </template>
 
 <style lang="scss">
