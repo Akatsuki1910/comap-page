@@ -56,7 +56,7 @@ export default class Index extends Vue {
 
     this.map.addControl(new mapboxgl.NavigationControl(), 'bottom-left')
 
-    const pngName = ['me', 'kurumaisu', 'kodomo', 'mimi']
+    const pngName = ['me' /*, 'kurumaisu', 'kodomo',  'mimi' */]
 
     this.map.on('load', () => {
       pngName.forEach((name) => {
@@ -71,17 +71,14 @@ export default class Index extends Vue {
                 {
                   type: 'Feature',
                   properties: {
-                    name: 'はびえる',
-                    time: '2022/09/17',
-                    text: 'ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章ここに文章',
-                    tag: '#色覚障害,#2型3色覚',
+                    name: '山田　太郎',
+                    time: '2022/09/18',
+                    text: 'ゴミ箱の色分けが自分には意味がないので吹き出しの形を変えてほしいです',
+                    tag: '#色覚障害,#１型色覚',
                   },
                   geometry: {
                     type: 'Point',
-                    coordinates: [
-                      Math.random() * 360 - 180,
-                      Math.random() * 180 - 90,
-                    ],
+                    coordinates: [139.546676635742, 35.3192138671875],
                   },
                 },
               ],
