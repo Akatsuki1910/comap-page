@@ -127,7 +127,6 @@ export default class Modal extends Vue {
   }
 
   sendData(data: GeolocationPosition) {
-    console.log(this.title)
     if (this.title === '') {
       this.errorFunc('タイトルを入力してください')
       return
