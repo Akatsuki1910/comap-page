@@ -15,11 +15,7 @@
       .exp
         .exp-title 色覚障害とは？
         .exp-exp 色覚異常とは、正常とされる他の大勢の人とは色が異なって見えてしまう・感じてしまう状態のことをいいます。 そのため色の区別がつきにくい場合があり、日常生活に支障をきたしてしまう可能性があります。 物を正常にみるためには、視力・視野・色覚の三つの機能が必要ですが、色覚異常とはこの三つの機能のうち、色覚に異常がある状態です。(色覚異常 - 目の病気百科 - 参天製薬)
-    img.ar(
-      src='@/assets/img/ar.png',
-      alt='alt',
-      @click='openUrl("https://arfilter.vercel.app/#1")'
-    )
+    img.ar(src='@/assets/img/ar.png', alt='alt', @click='openUrl("/Ar/#1")')
   //- button.close(@click='hiddenModal') close
 </template>
 

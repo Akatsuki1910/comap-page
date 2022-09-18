@@ -56,7 +56,7 @@ export default class Index extends Vue {
 
     this.map.addControl(new mapboxgl.NavigationControl(), 'bottom-left')
 
-    const pngName = ['me' /*, 'kurumaisu', 'kodomo',  'mimi' */]
+    const pngName = ['me', 'kurumaisu', 'kodomo', 'mimi']
 
     this.map.on('load', () => {
       pngName.forEach((name) => {

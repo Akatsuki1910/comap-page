@@ -47,7 +47,23 @@ export default {
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    extend(config) {
+      if (config.module) {
+        config.module.rules.push(
+          {
+            test: /\.(vert|frag)$/i,
+            use: ['raw-loader'],
+          },
+          {
+            test: /\.mjs$/,
+            include: /node_modules/,
+            type: 'javascript/auto',
+          },
+        )
+      }
+    },
+  },
 
   privateRuntimeConfig: {
     accessToken: process.env.ACCESS_TOKEN,
